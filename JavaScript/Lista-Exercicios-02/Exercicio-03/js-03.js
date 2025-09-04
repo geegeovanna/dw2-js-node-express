@@ -40,7 +40,7 @@ batman.investigar = () => {
   return "investigando um crime!!";
 };
 
-document.write(`<p>O herói ${homemAranha.nome} utilizando o sentido aranha ${homemAranha.sentidoAranha()}</p>`);
-document.write(`<p>O ${superman.nome} está ${superman.visaoCalor()}</p>`);
-document.write(`<p>O ${batman.nome} está ${batman.investigar()}</p>`);
+document.write(`<p>O herói ${homemAranha.nome} possui força ${homemAranha.forca} e utilizando o sentido aranha ${homemAranha.sentidoAranha()}</p>`);
+document.write(`<p>O ${superman.nome} possui vida ${superman.vida} e está ${superman.visaoCalor()}</p>`);
+document.write(`<p>O ${batman.nome} possui velocidade ${batman.velocidade} e está ${batman.investigar()}</p>`);
 

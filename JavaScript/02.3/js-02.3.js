@@ -57,11 +57,11 @@ const listaProdutos = [
 
 // Exibindo o Array de objetos com forEach
 
-listaProdutos.forEach(produto => {
-    document.write(`
+listaProdutos.forEach((produto) => {
+  document.write(`
         Produto: ${produto.marca}<br>
         Marca: ${produto.marca}<br>
         Preço: ${produto.preco}<br>
         Descrição: ${produto.descricao}<br><br>
         `);
-})
+});

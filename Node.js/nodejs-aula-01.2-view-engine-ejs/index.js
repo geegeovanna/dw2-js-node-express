@@ -15,12 +15,12 @@ app.get("/", (req, res) => {
 
 // ROTA DE PRODUTOS
 app.get("/produtos", (req, res) => {
-  res.send("<h1>Bem-vindo a página de Produtos!</h1>");
+  res.render("produtos");
 });
 
 // ROTA DE CLIENTES
 app.get("/clientes", (req, res) => {
-  res.send("<h1>Bem-vindo a página de Clientes!</h1>");
+  res.render("clientes");
 });
 
 // Iniciando o servidor HTTP

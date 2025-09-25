@@ -69,7 +69,7 @@ app.get("/perfil/:user", (req, res) => {
     user: user,
     // variavel a ser chamada : variavel criada para guardar o nome
   });
-});
+});         
 
 // Iniciando o servidor HTTP
 // O servidor escutará na porta 8080

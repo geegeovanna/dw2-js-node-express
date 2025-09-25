@@ -12,8 +12,8 @@ app.set("view engine", "ejs");
 app.get("/", (req, res) => {
   res.send(
     "<h1>Hello world! Bem vindo ao meu primeiro site com Node.js e Express! =)</h1>"
-  );
-});
+  );         
+});     
 
 // ROTA DE PRODUTOS
 app.get("/produtos", (req, res) => {
@@ -26,7 +26,7 @@ app.get("/clientes", (req, res) => {
 });
 
 // Iniciando o servidor HTTP
-// O servidor escutará na porta 8080
+// O servidor escutará na porta 8080   
 const port = 8080;
 
 app.listen(port, (error) => {

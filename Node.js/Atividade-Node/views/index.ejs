@@ -1,0 +1,25 @@
+<%- include ('partials/navbar.ejs') %>
+<%- include ('partials/header.ejs') %>
+
+<h1 style="text-align: center; margin-top: 100px; color: #22130c;">Bem-vindo a sua biblioteca digital!</h1>
+
+<div style="width: 100%; height: 500px; background-color: #fdf0d5; margin-top: 100px; margin-bottom: 100px; padding: 50px; display: flex; justify-content: center;">
+
+    <div style="width: 250px; height: 300px; background-color: #22130c; margin: 50px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4); display: flex; flex-direction: column; align-items: center; justify-content: center; border-radius: 10px;">
+        <i class="bi bi-book" style="color: #fdf0d5; font-size: 48px; margin-bottom: 30px;"></i>
+        <a href="/livros" class="btn" style="width: 130px; background-color: #fdf0d5; color: #22130c; font-weight: bold;">Livros</a>
+    </div>
+
+    <div style="width: 250px; height: 300px; background-color: #22130c; margin: 50px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4); display: flex; flex-direction: column; align-items: center; justify-content: center; border-radius: 10px;">
+        <i class="bi bi-film" style="color: #fdf0d5; font-size: 48px; margin-bottom: 30px;"></i>
+        <a href="/filmes" class="btn" style="width: 130px; background-color: #fdf0d5; color: #22130c; font-weight: bold;">Filmes</a>
+    </div>
+
+    <div style="width: 250px; height: 300px; background-color: #22130c; margin: 50px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4); display: flex; flex-direction: column; align-items: center; justify-content: center; border-radius: 10px;">
+        <i class="bi bi-collection-play" style="color: #fdf0d5; font-size: 48px; margin-bottom: 30px;"></i>
+        <a href="/series" class="btn" style="width: 130px; background-color: #fdf0d5; color: #22130c; font-weight: bold;">Séries</a>
+    </div>
+
+</div>
+  
+<%- include ('partials/footer.ejs') %>

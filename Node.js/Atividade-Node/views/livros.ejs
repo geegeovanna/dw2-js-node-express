@@ -1,0 +1,36 @@
+<%- include ('partials/navbar.ejs') %> 
+<%- include ('partials/header.ejs') %>
+
+<h3 class="lista-h3">Lista de Livros:</h3>
+
+<div class="div-tabela">
+  <table class="table table-borderless table-hover w-100 h-100 text-center align-middle">
+    <thead>
+      <tr>
+        <th>Imagem:</th>
+        <th>Título:</th>
+        <th>Autor:</th>
+        <th>Gênero Literário:</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% livros.forEach(livro => { %>
+      <tr>
+        <td><img src="<%= livro.imagem %>" width="200px"></td>
+        <td><%= livro.titulo %></td>
+        <td><%= livro.autor %></td>
+        <td><%= livro.genero %></td>
+      </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</div>
+
+
+<ul>
+  <li>
+    <a href="/" class="btn" style="width: 150px; background-color: #22130c; color: #ffffff; font-weight: bold; margin-bottom: 100px; margin-left: 1225px;">Voltar</a>
+  </li>
+</ul>
+
+<%- include ('partials/footer.ejs') %>

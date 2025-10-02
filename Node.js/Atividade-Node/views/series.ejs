@@ -1,0 +1,29 @@
+<%- include ('partials/navbar.ejs') %>
+<%- include ('partials/header.ejs') %>
+
+    <h2 class="lista-h3">Lista de séries:</h2>
+
+    <div class="div-tabela">
+    <table class="table table-borderless table-hover w-100 h-100 text-center align-middle">
+      <thead>
+        <tr>
+          <th>Imagem:</th>
+          <th>Título:</th>
+          <th>Gênero:</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% series.forEach(serie => { %>
+            <tr>
+                <td><img src="<%= serie.imagem %>" width="200px"></td>
+                <td><%= serie.titulo %></td>
+                <td><%= serie.genero %></td>
+            </tr>
+        <% }) %>
+      </tbody>
+    </table>
+    </div>
+    <ul>
+        <li><a href="/" class="btn" style="width: 150px; background-color: #22130c; color: #ffffff; font-weight: bold; margin-bottom: 100px; margin-left: 1225px;">Voltar</a></li>
+    </ul>
+<%- include ('partials/footer.ejs') %>

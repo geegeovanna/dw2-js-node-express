@@ -12,6 +12,10 @@ const app = express();
 import ClientesController from "./controllers/ClientesController.js";
 import ProdutosController from "./controllers/ProdutosController.js";
 import PedidosController from "./controllers/PedidosController.js";
+
+// Configurando o express para permitir o recebimento de dados vindo de formulários
+app.use(express.urlencoded({ extended: false }));
+
 // Define o EJS como Renderizador de páginas
 app.set("view engine", "ejs");
 // Define o uso da pasta "public" para uso de arquivos estáticos
@@ -34,7 +38,9 @@ connection
   });
 
 // Criando o banco de dados (se ele ainda não existir)
-connection.query("CREATE DATABASE IF NOT EXISTS nossaloja;").then(() => {
+connection
+  .query("CREATE DATABASE IF NOT EXISTS nossaloja;")
+  .then(() => {
     console.log("O banco de dados está criado.");
   })
   .catch((error) => {

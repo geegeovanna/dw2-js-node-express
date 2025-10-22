@@ -1,6 +1,37 @@
 <%- include ('partials/header.ejs') %>
 <%- include ('partials/navbar.ejs') %>
 
+<div class="container">
+  <div class="card">
+    <div class="card-header">
+      <h1>Cadastrar pedido</h1>
+    </div>
+    <div class="card-body">
+      <!--Formulário de cadastro-->
+      <form action="/pedidos/new" method="POST">
+        <label>Número do pedido:</label>
+        <input
+          type="text"
+          name="numero"
+          placeholder="Insira o número do pedido"
+          class="form-control"
+          required
+        />
+        <label>Valor do pedido:</label>
+        <input
+          type="text"
+          name="valor"
+          placeholder="Insira o valor do pedido"
+          class="form-control"
+          required
+        />
+        <input type="submit" class="btn btn-success" value="Cadastrar" />
+        <input type="reset" class="btn btn-danger" value="Limpar" />
+      </form>
+    </div>
+  </div>
+</div>
+
     <div class="container">
         <div class="card">
             <div class="card-header">
@@ -21,6 +52,8 @@
                             <td><img src="imgs/order.png" width="30px"></td>
                             <td><%= pedido.numero %></td>
                             <td><%= pedido.valor.toLocaleString('pt-br', {style: 'currency', currency: 'BRL'}) %></td>
+                            <td><a href="/pedidos/edit/<%= pedido.id %>"><button class="btn btn-warning">Editar</button></a></td>
+            <td><a href="/pedidos/delete/<%= pedido.id %>"><button onclick="return confirm('Deseja mesmo excluir o pedido <%= pedido.nome %>?')" class="btn btn-danger">Excluir</button></a></td>
                         </tr>
                         <% }) %>
                     </tbody>

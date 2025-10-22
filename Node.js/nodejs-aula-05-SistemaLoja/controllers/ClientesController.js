@@ -59,15 +59,37 @@ router.get("/clientes/delete/:id", (req, res) => {
 // Rota de edição de cliente
 router.get("/clientes/edit/:id", (req, res) => {
   const id = req.params.id;
-  
+
   // Buscando o cliente pelo ID
   // findByPk() - > busca um registro pela chave primária
-  Cliente.findByPk(id).then(cliente => {
+  Cliente.findByPk(id).then((cliente) => {
     res.render("clienteEdit", {
-      cliente: cliente
+      cliente: cliente,
+    });
+  });
+});
+
+// Rota de alteração de cliente
+router.post("/clientes/update", (req, res) => {
+  //COLETANDO DADOS DO FORMULÁRIO
+  const id = req.body.id;
+  const nome = req.body.nome;
+  const cpf = req.body.cpf;
+  const endereco = req.body.endereco;
+  Cliente.update(
+    {
+      nome: nome,
+      cpf: cpf,
+      endereco: endereco,
+    },
+    { where: { id: id } }
+  )
+    .then(() => {
+      res.redirect("/clientes");
     })
-  })
-  
+    .catch((error) => {
+      console.log(error);
+    });
 });
 
 export default router;

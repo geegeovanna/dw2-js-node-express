@@ -11,6 +11,7 @@ import ProdutosController from "./controllers/ProdutosController.js";
 // Importando os models
 import Cliente from "./models/Cliente.js";
 import Pedido from "./models/Pedido.js";
+import Produto from "./models/Produto.js";
 // Importando os relacionamentos
 import defineAssociations from "./config/associations.js";
 
@@ -67,6 +68,6 @@ app.listen(8080, (erro) => {
   if (erro) {
     console.log("Ocorreu um erro!");
   } else {
-    console.log("Servidor iniciado com sucesso!");
+    console.log(`Servidor iniciado em http://localhost:8080 com sucesso!` );
   }
 });

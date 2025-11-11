@@ -1,0 +1,24 @@
+<%- include ('partials/navbar.ejs') %>
+<%- include ('partials/header.ejs') %>
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <h1>Alterar Filme</h1>
+            <hr>
+            <form method="POST" action="/filmes/update/<%= filme.id %>">
+                <label>Titulo do filme:</label>
+                <input type="text" name="titulo" id="titulo" value="<%= filme.titulo %>" class="form-control" required>
+                                
+                <label>Genero do filme:</label>
+                <input type="text" name="genero" id="genero" value="<%= filme.genero %>" class="form-control" required>
+            
+                <br>
+                <input type="hidden" name="id" value="<%= filme.id %>">
+                <input type="submit" class="btn btn-warning" value="Alterar" onclick="return confirm('Confirma as alterações realizadas para o filme <%= filme.titulo %>?')">
+            </form>
+            <hr>
+        </div>
+    </div>
+</div>
+<br>
+<%- include ('partials/footer.ejs') %>

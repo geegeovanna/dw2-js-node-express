@@ -1,36 +1,90 @@
 <%- include ('partials/navbar.ejs') %> 
 <%- include ('partials/header.ejs') %>
 
+<div class="container mt-5 mb-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6"> 
+            <div class="card shadow-lg border-0">
+                <div class="card-header bg-dark text-white text-center">
+                    <h1>Registrar Livro</h1>
+                </div>
+                <div class="card-body">
+                    <form method="POST" action="/livros/new">
+                        
+                        <div class="mb-3">
+                            <label for="titulo" class="form-label">Título do livro:</label>
+                            <input type="text" id="titulo" name="titulo" placeholder="Insira o título do livro"
+                                class="form-control form-control-lg" required>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="autor" class="form-label">Autor do livro:</label>
+                            <input type="text" id="autor" name="autor" placeholder="Insira o autor do livro"
+                                class="form-control form-control-lg" required>
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="genero" class="form-label">Gênero Literário do livro:</label>
+                            <input type="text" id="genero" name="genero" placeholder="Insira o gênero do livro"
+                                class="form-control form-control-lg" required>
+                        </div>
+                        
+                        <hr>
+
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <button type="submit" class="btn btn-success btn-lg">
+                                <i class="bi bi-check-circle-fill"></i> Cadastrar
+                            </button>
+                            <button type="reset" class="btn btn-outline-secondary btn-lg">
+                                <i class="bi bi-x-circle-fill"></i> Limpar
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+
 <h3 class="lista-h3">Lista de Livros:</h3>
 
 <div class="div-tabela">
-  <table class="table table-borderless table-hover w-100 h-100 text-center align-middle">
-    <thead>
-      <tr>
-        <th>Imagem:</th>
-        <th>Título:</th>
-        <th>Autor:</th>
-        <th>Gênero Literário:</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% livros.forEach(livro => { %>
-      <tr>
-        <td><img src="<%= livro.imagem %>" width="200px"></td>
-        <td><%= livro.titulo %></td>
-        <td><%= livro.autor %></td>
-        <td><%= livro.genero %></td>
-      </tr>
-      <% }) %>
-    </tbody>
-  </table>
+    <table class="table table-borderless table-hover w-100 h-100 text-center align-middle">
+        <thead>
+            <tr>
+                <th>Título:</th>
+                <th>Autor:</th>
+                <th>Gênero Literário:</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% livros.forEach(livro => { %>
+            <tr>
+                <td><%= livro.titulo %></td>
+                <td><%= livro.autor %></td>
+                <td><%= livro.genero %></td>
+                <td class="text-center" style="max-width: 30px;">
+                    <a href="/livros/edit/<%= livro.id %>">
+                        <button class="btn btn-warning btn-sm">Editar</button>
+                    </a>
+                </td>
+                <td class="text-center" style="max-width: 60px;">
+                    <a onclick="return confirm('Deseja mesmo excluir o livro <%= livro.titulo %>?')" href="/livros/delete/<%= livro.id %>">
+                        <button class="btn btn-danger">Excluir</button>
+                    </a>
+                </td>
+            </tr>
+            <% }) %>
+        </tbody>
+    </table>
 </div>
 
 
 <ul>
-  <li>
-    <a href="/" class="btn" style="width: 150px; background-color: #22130c; color: #ffffff; font-weight: bold; margin-bottom: 100px; margin-left: 1225px;">Voltar</a>
-  </li>
+    <li>
+        <a href="/" class="btn" style="width: 150px; background-color: #22130c; color: #ffffff; font-weight: bold; margin-bottom: 100px; margin-left: 1225px;">Voltar</a>
+    </li>
 </ul>
 
 <%- include ('partials/footer.ejs') %>

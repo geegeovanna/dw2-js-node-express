@@ -1,0 +1,24 @@
+<%- include ('partials/navbar.ejs') %>
+<%- include ('partials/header.ejs') %>
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <h1>Alterar Serie</h1>
+            <hr>
+            <form method="POST" action="/series/update/<%= serie.id %>">
+                <label>Titulo da serie:</label>
+                <input type="text" name="titulo" id="titulo" value="<%= serie.titulo %>" class="form-control" required>
+                                
+                <label>Genero da serie:</label>
+                <input type="text" name="genero" id="genero" value="<%= serie.genero %>" class="form-control" required>
+            
+                <br>
+                <input type="hidden" name="id" value="<%= serie.id %>">
+                <input type="submit" class="btn btn-warning" value="Alterar" onclick="return confirm('Confirma as alterações realizadas para a serie <%= serie.titulo %>?')">
+            </form>
+            <hr>
+        </div>
+    </div>
+</div>
+<br>
+<%- include ('partials/footer.ejs') %>

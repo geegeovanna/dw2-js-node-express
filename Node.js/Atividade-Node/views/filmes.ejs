@@ -1,6 +1,46 @@
 <%- include ('partials/navbar.ejs') %>
 <%- include ('partials/header.ejs') %>
 
+<div class="container mt-5 mb-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6"> 
+            <div class="card shadow-lg border-0">
+                <div class="card-header bg-dark text-white text-center">
+                    <h1>Registrar Filme</h1>
+                </div>
+                <div class="card-body">
+                    <form method="POST" action="/filmes/new">
+                        
+                        <div class="mb-3">
+                            <label for="titulo" class="form-label">Título do filme:</label>
+                            <input type="text" id="titulo" name="titulo" placeholder="Insira o nome do filme"
+                                class="form-control form-control-lg" required>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <label for="genero" class="form-label">Gênero do filme:</label>
+                            <input type="text" id="genero" name="genero" placeholder="Insira o gênero do filme"
+                                class="form-control form-control-lg" required>
+                        </div>
+
+                        <hr>
+
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <button type="submit" class="btn btn-success btn-lg">
+                                <i class="bi bi-check-circle-fill"></i> Cadastrar
+                            </button>
+                            <button type="reset" class="btn btn-outline-secondary btn-lg">
+                                <i class="bi bi-x-circle-fill"></i> Limpar
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+
     <h3 class="lista-h3">Lista de Filmes:</h3>
 
     <div class="div-tabela">
@@ -15,9 +55,19 @@
         <tbody>
              <% filmes.forEach(filme => { %>
             <tr>
-                <td><img src="<%= filme.imagem %>" width="200px"></td>
+                <!-- <td><img src="<%= filme.imagem %>" width="200px"></td> -->
                 <td><%= filme.titulo %></td>
                 <td><%= filme.genero %></td>
+                <td class="text-center" style="max-width: 30px;">
+                                        <a href="/filmes/edit/<%= filme.id %>">
+                                            <button class="btn btn-warning btn-sm">Editar</button>
+                                        </a>
+                                    </td>
+                <td class="text-center" style="max-width: 60px;">
+                                        <a onclick="return confirm('Deseja mesmo excluir o pedido de número <%= filme.titulo %>?')" href="/filmes/delete/<%= filme.id %>">
+                                            <button class="btn btn-danger">Excluir</button>
+                                        </a>
+                            </td>
             </tr>
         <% }) %>
         </tbody>

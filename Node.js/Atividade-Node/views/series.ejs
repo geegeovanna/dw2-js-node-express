@@ -1,6 +1,46 @@
 <%- include ('partials/navbar.ejs') %>
 <%- include ('partials/header.ejs') %>
 
+<div class="container mt-5 mb-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6"> 
+            <div class="card shadow-lg border-0">
+                <div class="card-header bg-dark text-white text-center">
+                    <h1>Registrar Série</h1>
+                </div>
+                <div class="card-body">
+                    <form method="POST" action="/series/new">
+                        
+                        <div class="mb-3">
+                            <label for="titulo" class="form-label">Título da série:</label>
+                            <input type="text" id="titulo" name="titulo" placeholder="Insira o nome da série"
+                                class="form-control form-control-lg" required>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <label for="genero" class="form-label">Gênero da série:</label>
+                            <input type="text" id="genero" name="genero" placeholder="Insira o gênero da série"
+                                class="form-control form-control-lg" required>
+                        </div>
+
+                        <hr>
+
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <button type="submit" class="btn btn-success btn-lg">
+                                <i class="bi bi-check-circle-fill"></i> Cadastrar
+                            </button>
+                            <button type="reset" class="btn btn-outline-secondary btn-lg">
+                                <i class="bi bi-x-circle-fill"></i> Limpar
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+        <br>
+
     <h2 class="lista-h3">Lista de séries:</h2>
 
     <div class="div-tabela">
@@ -15,9 +55,19 @@
       <tbody>
         <% series.forEach(serie => { %>
             <tr>
-                <td><img src="<%= serie.imagem %>" width="200px"></td>
+                <!-- <td><img src="<%= serie.imagem %>" width="200px"></td> -->
                 <td><%= serie.titulo %></td>
                 <td><%= serie.genero %></td>
+                <td class="text-center" style="max-width: 30px;">
+                                        <a href="/series/edit/<%= serie.id %>">
+                                            <button class="btn btn-warning btn-sm">Editar</button>
+                                        </a>
+                                    </td>
+                <td class="text-center" style="max-width: 60px;">
+                                        <a onclick="return confirm('Deseja mesmo excluir o pedido de número <%= serie.titulo %>?')" href="/series/delete/<%= serie.id %>">
+                                            <button class="btn btn-danger">Excluir</button>
+                                        </a>
+                            </td>
             </tr>
         <% }) %>
       </tbody>

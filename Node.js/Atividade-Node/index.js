@@ -4,6 +4,8 @@ const app = express();
 
 import connection from "./config/sequelize-config.js";
 
+import multer from "multer";
+
 import LivrosController from "./controllers/LivrosController.js";
 import FilmesController from "./controllers/FilmesController.js";
 import SeriesController from "./controllers/SeriesController.js";
@@ -34,6 +36,8 @@ app.set("view engine", "ejs");
 
 app.use(express.static("public"));
 
+const upload = multer({dest: "public/uploads/"});
+
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
@@ -44,6 +48,15 @@ app.use("/", SeriesController);
 app.get("/", function (req, res) {
   res.render("index");
 });
+
+// ROTA DE UPLOAD
+app.post("/upload", upload.single("file"), (req, res) => {
+    const file = req.file.filename
+    Galeria.create({
+        file : file 
+    })
+    res.redirect("/")
+})
 
 app.get("/perfil/:user", (req, res) => {
   const user = req.params.user;

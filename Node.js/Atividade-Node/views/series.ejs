@@ -9,7 +9,8 @@
                     <h1>Registrar Série</h1>
                 </div>
                 <div class="card-body">
-                    <form method="POST" action="/series/new">
+                    <form method="POST" action="/series/new" enctype="multipart/form-data">
+                         <input type="file" name="file" class="form-control" required>
                         
                         <div class="mb-3">
                             <label for="titulo" class="form-label">Título da série:</label>
@@ -55,19 +56,18 @@
       <tbody>
         <% series.forEach(serie => { %>
             <tr>
-                <!-- <td><img src="<%= serie.imagem %>" width="200px"></td> -->
+                <td><img src="/uploads/<%= serie.file %>" class="img-thumbnail" alt="Imagem" width="200px"></td>
                 <td><%= serie.titulo %></td>
                 <td><%= serie.genero %></td>
-                <td class="text-center" style="max-width: 30px;">
-                                        <a href="/series/edit/<%= serie.id %>">
-                                            <button class="btn btn-warning btn-sm">Editar</button>
-                                        </a>
-                                    </td>
-                <td class="text-center" style="max-width: 60px;">
-                                        <a onclick="return confirm('Deseja mesmo excluir o pedido de número <%= serie.titulo %>?')" href="/series/delete/<%= serie.id %>">
-                                            <button class="btn btn-danger">Excluir</button>
-                                        </a>
-                            </td>
+                 <td class="text-center"> 
+                    <a href="/series/edit/<%= serie.id %>">
+                        <button class="btn btn-warning btn-sm">Editar</button>
+                    </a>
+
+                    <a onclick="return confirm('Deseja mesmo excluir a série <%= serie.titulo %>?')" href="/series/delete/<%= serie.id %>" class="ms-2"> 
+                        <button class="btn btn-danger">Excluir</button>
+                    </a>
+                </td>
             </tr>
         <% }) %>
       </tbody>

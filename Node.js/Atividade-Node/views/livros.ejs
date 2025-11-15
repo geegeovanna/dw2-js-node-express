@@ -9,7 +9,8 @@
                     <h1>Registrar Livro</h1>
                 </div>
                 <div class="card-body">
-                    <form method="POST" action="/livros/new">
+                    <form method="POST" action="/livros/new" enctype="multipart/form-data">
+                        <input type="file" name="file" class="form-control" required>
                         
                         <div class="mb-3">
                             <label for="titulo" class="form-label">Título do livro:</label>
@@ -53,6 +54,7 @@
     <table class="table table-borderless table-hover w-100 h-100 text-center align-middle">
         <thead>
             <tr>
+                <th>Imagem:</th>
                 <th>Título:</th>
                 <th>Autor:</th>
                 <th>Gênero Literário:</th>
@@ -61,16 +63,16 @@
         <tbody>
             <% livros.forEach(livro => { %>
             <tr>
+                <td><img src="/uploads/<%= livro.file %>" class="img-thumbnail" alt="Imagem" width="200px"></td>
                 <td><%= livro.titulo %></td>
                 <td><%= livro.autor %></td>
                 <td><%= livro.genero %></td>
-                <td class="text-center" style="max-width: 30px;">
+                <td class="text-center"> 
                     <a href="/livros/edit/<%= livro.id %>">
                         <button class="btn btn-warning btn-sm">Editar</button>
                     </a>
-                </td>
-                <td class="text-center" style="max-width: 60px;">
-                    <a onclick="return confirm('Deseja mesmo excluir o livro <%= livro.titulo %>?')" href="/livros/delete/<%= livro.id %>">
+
+                    <a onclick="return confirm('Deseja mesmo excluir o livro <%= livro.titulo %>?')" href="/livros/delete/<%= livro.id %>" class="ms-2"> 
                         <button class="btn btn-danger">Excluir</button>
                     </a>
                 </td>

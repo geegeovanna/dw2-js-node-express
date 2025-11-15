@@ -10,6 +10,10 @@ const Serie = connection.define("series", {
     type: Sequelize.STRING,
     allowNull: false,
   },
+  file:{
+        type: Sequelize.STRING,
+        allowNull: false
+    }
 });
 
 //Serie.sync({ force: false });

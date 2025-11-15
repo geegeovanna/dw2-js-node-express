@@ -1,22 +1,28 @@
 import express from "express";
 import Serie from "../models/Serie.js";
+import multer from "multer";
+import path from 'path';
 const router = express.Router();
 
-// router.get("/series", (req, res) => {
-//   const series = [
-//     { imagem:"/imgs/imagem14.jpg", titulo: "Alice in borderland", genero: "Drama" },
-//     { imagem:"/imgs/imagem11.jpg", titulo: "Bridgerton", genero: "Romance" },
-//     { imagem:"/imgs/imagem12.jpeg", titulo: "Game of Thrones", genero: "Drama" },
-//     { imagem:"/imgs/imagem13.jpg", titulo: "House of the dragon", genero: "Drama" },
-//     { imagem:"/imgs/imagem17.jpeg", titulo: "The Witcher", genero: "Drama" },
-//   ];
-//   res.render("series", {
-//     series: series,
-//   });
-// });
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, "public/uploads"); 
+    },
+    filename: (req, file, cb) => {
+        const extensao = path.extname(file.originalname);
+        
+        const nomeArquivoBase = path.basename(file.originalname, extensao).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-*|-*$/g, '');
+
+        const nomeFinalImagem = `${nomeArquivoBase}-${Date.now()}${extensao}`;
+        
+        cb(null, nomeFinalImagem);
+    }
+});
+
+const upload = multer({ storage: storage });
+
 
 router.get("/series", function (req, res) {
-  // Busca apenas os series
   Serie.findAll()
     .then((series) => {
       res.render("series", {
@@ -27,13 +33,14 @@ router.get("/series", function (req, res) {
       console.log(err);
     });
 });
-// ROTA DE CADASTRO DE series
-router.post("/series/new", (req, res) => {
+
+router.post("/series/new", upload.single('file'), (req, res) => {
   const titulo = req.body.titulo;
   const genero = req.body.genero;
   Serie.create({
     titulo: titulo,
     genero: genero,
+    file: req.file.filename,
   })
     .then(() => {
       res.redirect("/series");
@@ -43,7 +50,6 @@ router.post("/series/new", (req, res) => {
     });
 });
 
-// ROTA DE EXCLUSÃO DE CLIENTES
 router.get("/series/delete/:id", (req, res) => {
   const id = req.params.id;
   Serie.destroy({
@@ -57,7 +63,6 @@ router.get("/series/delete/:id", (req, res) => {
     });
 });
 
-// ROTA DE EDIÇÃO DE Filmes
 router.get("/series/edit/:id", (req, res) => {
   const id = req.params.id;
   Serie.findByPk(id).then(function (serie) {
@@ -69,15 +74,16 @@ router.get("/series/edit/:id", (req, res) => {
   });
 });
 
-// ROTA DE ALTERAÇÃO DE Filmes
 router.post("/series/update/:id", (req, res) => {
   const id = req.body.id;
   const titulo = req.body.titulo;
   const genero = req.body.genero;
+  const file = req.body.file;
   Serie.update(
     {
       titulo: titulo,
       genero: genero,
+      file: file,
     },
     { where: { id: id } }
   ).then(() => {

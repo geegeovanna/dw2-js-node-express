@@ -5,6 +5,7 @@ const Livro = connection.define("livros", {
   titulo: {
     type: Sequelize.STRING,
     allowNull: false,
+    unique: true,
   },
   genero: {
     type: Sequelize.STRING,
@@ -14,6 +15,10 @@ const Livro = connection.define("livros", {
     type: Sequelize.STRING,
     allowNull: false,
   },
+  file:{
+        type: Sequelize.STRING,
+        allowNull: false
+    }
   
 });
 
